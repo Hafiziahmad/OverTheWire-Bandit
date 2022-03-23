@@ -10,7 +10,7 @@ Based on [https://www.wikihow.com/Use-SSH](https://www.wikihow.com/Use-SSH), the
 
 And the password is `bandit0`. If successful, it will display:
 
-![](.gitbook/assets/image.png)
+![](<.gitbook/assets/image (1).png>)
 
 ## _**Level 0 → Level 1**_
 
@@ -50,9 +50,17 @@ Use `ls` command to list the files , `-a` option to list ALL the files in **inhe
 
 Use `cd inhere/` to change directory into **inhere** and **** `cat .hidden` **** to read the hidden file to get the password for Level 4.
 
-![](<.gitbook/assets/image (1).png>)
+![](<.gitbook/assets/image (1) (1).png>)
 
 ## _**Level 4 → Level 5**_
 
+The password for the next level is stored in the only human-readable file in the **inhere** directory.
 
+Use `ls -R` command to list all the files in **inhere**.
+
+Use `file ./inhere/*` to display file type of all the files in the inhere directory. ASCII text is human-readable file.
+
+Use `cat ./inhere/-file07` to get the password for level 5.
+
+![](.gitbook/assets/image.png)
 
