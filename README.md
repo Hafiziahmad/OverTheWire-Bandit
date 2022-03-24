@@ -24,7 +24,7 @@ The password for the next level is stored in a file called **readme** located in
 
 Use `ls` command to list the files, and `cat` command to read the data in file which is password for Level 1.
 
-![](<.gitbook/assets/image (2) (1).png>)
+![](<.gitbook/assets/image (2) (1) (1).png>)
 
 ## _**Level 1 → Level 2**_
 
@@ -134,7 +134,7 @@ Use `sort` command to sorting text files, following with the file, and `uniq` co
 
 `-c` option is to count the number of occurrences and `-u` option is to print unique lines.
 
-![](<.gitbook/assets/image (16).png>)
+![](<.gitbook/assets/image (16) (1).png>)
 
 Number 1 represents the count of occurrences and next to it is the password for Level 9.
 
@@ -144,7 +144,7 @@ The password for the next level is stored in the file **data.txt** in one of the
 
 _Use_ `cat data.txt | strings | grep =` which is `cat` command for get the data following by the text file, `strings` command to print the strings of printable characters and `grep` command to print lines matched. It shows the password of Level 10.
 
-![](<.gitbook/assets/image (19).png>)
+![](<.gitbook/assets/image (19) (1).png>)
 
 ## _**Level 10 → Level 11**_
 
@@ -154,7 +154,7 @@ _`cat data.txt` command is to get the data from **data.txt** and `base64` comman
 
 _`-d` option is to decode the following data. After decode the data, it will print the password for Level 11._
 
-![](<.gitbook/assets/image (10).png>)
+![](<.gitbook/assets/image (10) (1).png>)
 
 ## _**Level 11 → Level 12**_
 
@@ -162,7 +162,7 @@ The password for the next level is stored in the file **data.txt**, where all lo
 
 Based on Wikipedia, to apply ROT13 to a piece of text, just examine its alphabetic letters and replace each one with the letter 13 places further along in the alphabet, wrapping back to the beginning if required.
 
-![](<.gitbook/assets/image (2).png>)
+![](<.gitbook/assets/image (2) (1).png>)
 
 So, to read the data from **data.txt**, use `cat data.txt` command with `tr 'A-Za-z' 'N-ZA-Mn-za-m'`. It will show the password for Level 12.
 
@@ -200,7 +200,7 @@ The password for the next level is stored in **/etc/bandit\_pass/bandit14 and ca
 
 Use `ssh` command to open SSH client, and because of the SSH key is private, use `-i` option to read the private file. And because of the user is bandit14, so the localhost is bandit14. Type 'yes' to continue.
 
-![](<.gitbook/assets/image (11).png>)
+![](<.gitbook/assets/image (11) (1).png>)
 
 Use `cat /etc/bandit_pass/bandit14` command to get the password for Level 14.
 
@@ -236,3 +236,32 @@ If correct, it will show the password for Level 16.
 
 The credentials for the next level can be retrieved by submitting the password of the current level to **a port on localhost in the range 31000 to 32000**. First find out which of these ports have a server listening on them. Then find out which of those speak SSL and which don’t. There is only 1 server that will give the next credentials, the others will simply send back to you whatever you send to it.
 
+First, we need to get the current password which is stored in _****_ `/etc/bandit_pass/bandit16` directory.
+
+![](<.gitbook/assets/image (19).png>)
+
+Use `nmap` command to find out the suitable ports that listening on them which in the range 31000 to 32000. Nmap is network exploration tool and port scanner which is the right tools in this task.
+
+![](<.gitbook/assets/image (11).png>)
+
+There are 2 results; 31518 and 31790. To find out, use `openssl s_client` command and enter the current password. The right server will give the private key and another one will send back the password. Copy the whole private key to login to Level 17.
+
+![](<.gitbook/assets/image (16).png>)
+
+Find the password for Level 17 that stored in`/etc/bandit_pass/bandit16` directory.
+
+![](<.gitbook/assets/image (17).png>)
+
+## _**Level 17 → Level 18**_
+
+There are 2 files in the homedirectory: **passwords.old and passwords.new**. The password for the next level is in **passwords.new** and is the only line that has been changed between **passwords.old and passwords.new.**
+
+Use diff command to differentiate  between two files.
+
+Use the second password because already told that the password for Level 18 is in **password.new**.
+
+![](<.gitbook/assets/image (10).png>)
+
+## _**Level 18 → Level 19**_
+
+_****_
