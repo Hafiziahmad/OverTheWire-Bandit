@@ -110,7 +110,7 @@ _Use ****_ `find / -user bandit7 -group bandit6 -size 33c` which is:
 
 and `-size 33c` option which is the size of file is 33 bytes. All the permission is denied but 1 file display the directory: `/var/lib/dpkg/info/bandit7.password`
 
-![](<.gitbook/assets/image (15) (1).png>)
+![](<.gitbook/assets/image (15) (1) (1).png>)
 
 Use `cat /var/lib/dpkg/info/bandit7.password` to get the password for Level 7.
 
@@ -122,7 +122,7 @@ The password for the next level is stored in the file **data.txt** next to the w
 
 Use `grep` command to print lines that match with the given word which is **millionth**, and put text file that the password is stored.
 
-![](<.gitbook/assets/image (6) (1).png>)
+![](<.gitbook/assets/image (6) (1) (1).png>)
 
 The password for Level 8 is inline with **millionth**, but remember, the password is not include with that word.
 
@@ -134,7 +134,7 @@ Use `sort` command to sorting text files, following with the file, and `uniq` co
 
 `-c` option is to count the number of occurrences and `-u` option is to print unique lines.
 
-![](<.gitbook/assets/image (16) (1) (1).png>)
+![](<.gitbook/assets/image (16) (1) (1) (1).png>)
 
 Number 1 represents the count of occurrences and next to it is the password for Level 9.
 
@@ -154,7 +154,7 @@ _`cat data.txt` command is to get the data from **data.txt** and `base64` comman
 
 _`-d` option is to decode the following data. After decode the data, it will print the password for Level 11._
 
-![](<.gitbook/assets/image (10) (1) (1).png>)
+![](<.gitbook/assets/image (10) (1) (1) (1).png>)
 
 ## _**Level 11 → Level 12**_
 
@@ -246,7 +246,7 @@ Use `nmap` command to find out the suitable ports that listening on them which i
 
 There are 2 results; 31518 and 31790. To find out, use `openssl s_client` command and enter the current password. The right server will give the private key and another one will send back the password. Copy the whole private key to login to Level 17.
 
-![](<.gitbook/assets/image (16) (1).png>)
+![](<.gitbook/assets/image (16) (1) (1).png>)
 
 Find the password for Level 17 that stored in`/etc/bandit_pass/bandit1`_**7**_ `` directory.
 
@@ -260,7 +260,7 @@ Use diff command to differentiate  between two files.
 
 Use the second password because already told that the password for Level 18 is in **password.new**.
 
-![](<.gitbook/assets/image (10) (1).png>)
+![](<.gitbook/assets/image (10) (1) (1).png>)
 
 ## _**Level 18 → Level 19**_
 
@@ -272,7 +272,7 @@ This is occur when we are trying to login normally. Try to bypass to see the fil
 
 `ssh bandit18@bandit.labs.overthewire.org -p 2220 ls`
 
-![](<.gitbook/assets/image (6).png>)
+![](<.gitbook/assets/image (6) (1).png>)
 
 And it successful. Then, try to read **readme** file by:
 
@@ -292,7 +292,7 @@ The password for Level 20 that stored in`/etc/bandit_pass/bandit20` directory, b
 
 To read the password, use the binary file as user bandit20.
 
-![](<.gitbook/assets/image (15).png>)
+![](<.gitbook/assets/image (15) (1).png>)
 
 ## _**Level 20 → Level 21**_
 
@@ -320,7 +320,7 @@ We are looking password for Level 22, so choose the file `cronjob_bandit22`. Use
 
 The, try to read the file in `/usr/bin/cronjob_bandit22.sh`.
 
-![](<.gitbook/assets/image (16).png>)
+![](<.gitbook/assets/image (16) (1).png>)
 
 That is not the password since it is a file. So read the file in `/tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv` to get the password for Level 22.
 
@@ -350,7 +350,7 @@ From the equation, replace `$myname` to `bandit23`.
 
 So, `mytarget = $8ca319486bfbbc3663ea0fbe81326349`. Then, read and replace `/tmp/$mytarget` to `/tmp/8ca319486bfbbc3663ea0fbe81326349` to get the password for Level 23.
 
-![](<.gitbook/assets/image (10).png>)
+![](<.gitbook/assets/image (10) (1).png>)
 
 ## _**Level 23 → Level 24**_
 
@@ -385,4 +385,24 @@ Read the password file and it will display the password for Level 24.
 ## _**Level 24 → Level 25**_
 
 A daemon is listening on port 30002 and will give you the password for bandit25 if given the password for bandit24 and a secret numeric 4-digit pincode. There is no way to retrieve the pincode except by going through all of the 10000 combinations, called brute-forcing.
+
+As we know, the password for Level 24 is:
+
+![](<.gitbook/assets/image (6).png>)
+
+And following by 4-digit pincode. If we try one by one in range of 0000 to 9999, it wastes a lot of times, so we can make a loop to try the pincode automatically.
+
+First, create a files name `brute-force.sh` using `mkdir` command in a new directory: `/tmp/bandit25`. In `brute-force.sh`, create a loops for pincode:
+
+![](<.gitbook/assets/image (15).png>)
+
+And change the mode: `chmod 777 bruteforce.sh`. Finally, run the file using `./` command. It will try each until it get the right pincode and get the password for Level 25.
+
+![](<.gitbook/assets/image (16).png>)
+
+## _**Level 25 → Level 26**_
+
+Logging in to bandit26 from bandit25 should be fairly easy… The shell for user bandit26 is not **/bin/bash**, but something else. Find out what it is, how it works and how to break out of it.
+
+
 
